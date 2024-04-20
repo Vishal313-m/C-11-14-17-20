@@ -46,7 +46,7 @@ int main()
    //Accessing stuff through the base class pointer
     shared_ptr<base> obj1 = make_shared<derived>();
     obj1->draw(); // Static Binding
-   //obj1->func(); // Error :  func is private in Shape
+   //obj1->func(); // Error :  func is private in base
    
 
    cout<<"-------------------------------------------"<<endl;
