@@ -93,7 +93,7 @@ public:
 int main() 
 { 
 	Derived d; 
-	d.Base::fun(5); // Compiler Error 
+	d.Base::fun(5);
 	return 0; 
 }
 
@@ -134,6 +134,6 @@ public:
 int main() 
 { 
 	Derived d; 
-	d.fun(5); // Compiler Error 
+	d.fun(5); 
 	return 0; 
 }
