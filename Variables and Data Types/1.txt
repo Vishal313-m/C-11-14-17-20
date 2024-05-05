@@ -1,0 +1,252 @@
+Primitive Data Types:
+
+- Integer: int ( 4 bytes)
+- Character: char (1 byte)
+- Boolean: bool (1 byte)
+- Floating-Point: float (4 bytes), double (8 bytes)
+- Valueless/Void: void (0 bytes)
+- Wide Character: wchar_t (2 bytes)
+- Derived Data Types:
+
+1.) Integer
+Integer data types represent whole numbers without a fractional or decimal part. They can be signed (positive, negative, or zero) or unsigned (only positive or zero).
+
+Example
+int signedInt = -42;unsigned int unsignedInt = 123;
+This code declares two integer variables, one signed ("signedInt") with a value of -42 and the other unsigned ("unsignedInt") with a value of 123.
+
+2.) Character
+Character data types represent individual characters from a character set, like ASCII or Unicode. In C++, `char` is commonly used to represent characters.
+
+Example
+char myChar = 'A';
+The character variable "myChar" with the value "A" is declared using this code.
+
+3.) Boolean
+Boolean data types represent binary values, typically used for true (1) or false (0) conditions. In C++, `bool` is used for Boolean data.
+
+Example
+bool isTrue = true;
+bool isFalse = false;
+The two boolean variables "isTrue" and "isFalse" are declared in this code with the values true and false, respectively.
+
+4.) Floating Point
+Floating-point data types represent numbers with a fractional part. In C++, `float` is a single-precision floating-point type.
+
+Example
+float myFloat = 3.14159f;
+The floating-point variable "myFloat" is declared in this code with the value 3.14159.
+
+5.) Double Floating Point
+Double-precision floating-point data types are used to represent numbers with a larger range and higher precision compared to 'float'. In C++, 'double' is commonly used.
+
+Example
+double myDouble = 3.141592653589793;
+This code declares a high-precision double-precision floating-point variable named "myDouble" with the value of (pi).
+
+6.) Valueless or Void
+The void data type in C++ is used to indicate that a function does not return any value or to declare generic pointers that do not point to a specific data type.
+
+Example
+void myFunction() { // This function does not return a value
+}
+void* genericPointer;
+This code declares a generic void pointer named "genericPointer" as well as the void function "myFunction," which has no return value.
+
+7.) Wide Character
+Wide character data types, like 'wchar_t', are used to represent characters from extended character sets, such as Unicode characters that require more storage than a standard `char`.
+
+Example
+wchar_t myWideChar = L'A'; // Assigning the wide character 'A'
+Using the wide-character literal "L," this code declares the wide-character variable "myWideChar" with the value "A."
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Derived Data Types:
+- Function
+- Array
+- Pointer
+- Reference
+
+
+Derived Data type
+The derived data type in C++ is derived from the primitive data type. There are some derived data types in C++ language:
+Function
+Array
+Pointer
+Reference
+
+1. Function
+A function is a reusable block of code that performs a specific task. It is a derived data type because you can define
+ functions to work with other data types and can even return values of different data types.
+
+Example
+// Function that adds two integers and returns the result
+int add(int a, int b) {
+ return a + b;
+} // Function that concatenates two strings and returns the result
+std::string concatenate(std::string str1, std::string str2) {
+ return str1 + str2;
+} int main() {
+ int sum = add(5, 3);
+ std::string result = concatenate("Hello, ", "World!");
+ return 0;
+}
+The main function in this code employs the two functions "add" for integer addition and "concatenate" for text concatenation, and it returns 0 as a result.
+
+
+2. Array
+An array is a derived data type that represents a collection of elements of the same data type, stored in contiguous memory locations. 
+The elements can be accessed by their index.
+
+Example
+// Declaration and initialization of an integer array
+int numbers[5] = {1, 2, 3, 4, 5}; // Accessing elements of the array
+int firstNumber = numbers[0]; // Accessing the first element (index 0)
+int thirdNumber = numbers[2]; // Accessing the third element (index 2)
+This code defines and initializes an integer array called "numbers" with values ranging from 1 to 5. 
+It then accesses and assigns the first element to "firstNumber" and the third element to "thirdNumber" by referring to the elements' respective indices (0 and 2).
+
+3. Pointer
+A pointer is a derived data type that stores the memory address of another data type. Pointers are often used for dynamic memory 
+allocation and for accessing memory locations directly.
+
+Example
+// Declaration and initialization of a pointer
+int* ptr; // Pointer to an integer
+int num = 42;
+ptr = &num; // Assigning the address of 'num' to 'ptr' // Accessing the value through the pointer
+int value = *ptr; // Dereferencing the pointer to get the value (value = 42)
+This code defines and initializes an integer pointer called "ptr," gives it the address of the integer variable "num," and then accesses the value stored at that address by dereferencing the pointer. The value 42 is then stored in the variable "value."
+
+4. Reference
+A reference is a derived data type that acts as an alias or an alternative name for an existing variable. 
+It allows you to manipulate the original variable directly, and it cannot be null or reseated to another variable after initialization.
+
+Example
+int originalVar = 100;
+int&
+ refVar = originalVar; // Creating a reference to 'originalVar' 
+ refVar = 200; // Modifying 'originalVar' through 'refVar' 
+// Both 'originalVar' and 'refVar' now have the value 200
+This code in C++ Online Compiler generates a reference variable "refVar" that references to the integer variable "originalVar" and allows adjustments through it, 
+so updating "refVar" to 200 updates "originalVar" to 200 as well, resulting in both variables having the value 200.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+User-Defined Data Types:
+- Class
+- Struct
+- Union
+- Enumeration
+- Typedef
+
+
+. Class
+A class is a user-defined data type that represents a blueprint for creating objects.
+ It encapsulates data (attributes) and functions (methods) that operate on that data. 
+ Classes are used to model real-world entities and provide a way to define custom data structures.
+
+Example
+// Define a class representing a 'Person'
+class Person {
+public:
+ // Attributes
+ std::string name;
+ int age; // Constructor
+ Person(std::string n, int a) : name(n), age(a) {} // Method to display information
+ void displayInfo() {
+ std::cout << "Name: " << name << ", Age: " << age << std::endl;
+ }
+};
+int main() {
+ // Create objects of the 'Person' class
+ Person person1("Alice", 30);
+ Person person2("Bob", 25); // Access and use class members
+ person1.displayInfo();
+ person2.displayInfo(); 
+ return 0;
+}
+This code creates a class called "Person" that has attributes for name and age as well as a 
+constructor that initializes those attributes and a method called "displayInfo" that prints out the person's data. Two "Person" objects are created, 
+and initialized with distinct data, and their information is displayed using the "displayInfo" method in the "main" function.
+
+Read more: Object Oriented Programming (OOPs) Concepts in C++
+
+2. Structure
+A structure is a user-defined data type that groups variables of different data types under a single name. Structures are useful for organizing related data elements.
+
+Example
+// Define a structure for representing a 'Point' in 2D space
+struct Point {
+ int x;
+ int y;
+}; 
+int main() {
+ // Create instances of the 'Point' structure
+ Point p1 = {2, 3};
+ Point p2 = {5, 7}; // Access structure members
+ int sumX = p1.x + p2.x;
+ int sumY = p1.y + p2.y; 
+ return 0;
+}
+This program defines a "Point" structure to represent two-dimensional coordinates
+ builds two identical instances of the structure, and then computes the sums of the x and y components, 
+ storing the results in the "sumX" and "sumY" variables, respectively.
+
+3. Union
+A union is a user-defined data type that allows you to store different data types in the same memory location.
+ Unlike structures, which allocate memory for all members, unions share memory among their members.
+
+Example
+// Define a union representing a 'Value' that can be either an integer or a float union Value {
+ int intValue;
+ float floatValue;
+}; 
+int main() {
+ // Create a union instance
+ Value v; // Assign values to union members
+ v.intValue = 42;
+ // Now, 'v.floatValue' might not be meaningful because the same memory is shared. 
+ return 0;
+}
+This code constructs a union named "Value" that can hold either an integer or a float, 
+but because they share the same memory space, 
+accessing one member (for example, "v.floatValue") after assigning a value to another (for example, "v.intValue") can provide unexpected results.
+
+4. Enumeration
+An enumeration is a user-defined data type that consists of a set of named integer constants. It provides a way to create symbolic names for values to improve code readability.
+
+Example in C++ Compiler
+// Define an enumeration for days of the week
+enum Days { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday }; 
+int main() {
+ // Use enumeration constants
+ Days today = Wednesday; 
+if (today == Wednesday) {
+ std::cout << "It's Wednesday!" << std::endl;
+ } 
+ return 0;
+}
+This code creates the "Days" enumeration, which represents the seven days of the week,
+ assigns the value "Wednesday" to the variable "today," then checks to see if "today" equals "Wednesday," printing a message if it does.
+
+4. Typedef Defined Data Type
+typedef is a keyword that allows you to create aliases for existing data types, making your code more readable and providing abstraction.
+ It's not a new data type but a way to create alternative names for existing ones.
+
+Example
+ // Define a typedef for an integer pointer 
+typedef int* IntPtr; 
+int main() {
+ int number = 42;
+ IntPtr ptr = &number; // 'IntPtr' is an alias for 'int*' 
+// Now, 'ptr' is equivalent to 'int*' and can be used accordingly 
+return 0;
+}
+The typedef alias "IntPtr" is created by this code for an integer pointer (int*), and it is then used to declare the pointer variable "ptr," 
+enabling it to be used as a conventional integer pointer, referring to the integer variable "number."
+
+
+
