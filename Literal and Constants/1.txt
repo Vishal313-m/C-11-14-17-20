@@ -1,0 +1,44 @@
+
+
+In C++, a "literal" refers to data that is directly presented in the code, rather than being stored in a variable or accessed through a function call. 
+It represents constant values that are fixed and unmodifiable throughout the program's execution. 
+Examples of literals in C++ include integers like 42, floating-point numbers such as 3.14, characters like 'a', strings enclosed in double quotes like "hello world," 
+and boolean values like true or false. Literals play a crucial role in initializing variables, specifying values in expressions, and conveying data directly within the source code, 
+enhancing readability and maintainability
+.
+
+
+
+Literals In C/C++
+Literals in programming, whether in C or C++, are indeed constant values assigned to variables that remain fixed and unmodifiable 
+throughout the program’s execution. Unlike variables, literals are not associated with references and directly hold their values in memory. 
+In common usage, the terms “constants” and “literals” are often used interchangeably.
+
+For instance, consider the expression “const int x = 5;,” where the value 5 is a constant integer literal. In the world of C,
+ there are four primary types of literals, while in C++, there are five:
+
+Integer Literal: Used to represent whole numbers, such as 42.
+Float Literal: Represents decimal numbers with a fractional part, like 3.14.
+Character Literal: Represents a single character enclosed in single quotes, such as 'A'.
+String Literal: Represents a sequence of characters enclosed in double quotes, like "Hello, World!".
+Boolean Literal (C++): Represents either true or false, indicating logical values in C++.
+
+
+A literal is some data that's presented directly in the code, rather than indirectly through a variable or function call.
+
+Here are some examples, one per line:
+
+42
+128
+3.1415
+'a'
+"hello world"
+The data constituting a literal cannot be modified by a program, but it may be copied into a variable for further use:
+
+int a = 42;  // creates variable `a` with the same value as the literal `42`
+This concept is by no means unique to C++.
+
+The term "literal" comes from the fact that you've written data literally into your program, i.e. exactly as written, not "hidden" behind a variable name.
+
+
+
