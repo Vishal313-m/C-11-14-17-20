@@ -1,101 +1,198 @@
-
-
-
-#include<iostream>
+include<iostream>
 using namespace std;
 
- template <typename T>
-  class uniqueptr
-  {
+template<class T>
+class UniquePtr {
 
     private:
-       
-       T *res;
+        T* _ptr = nullptr;
+
+
+  public:
+ 
+ //Default Constructor 
+  UniquePtr() : _ptr(nullptr)
+  {
+
+  }
+
+  // Parameterized constructor 
+  explicit UniquePtr(T* ptr = nullptr) : _ptr(ptr)
+  {
+    cout<<"Ctor"<<endl;
+  }
+
+// Copy constructor and assignment operator are deleted
+  UniquePtr(const UniquePtr& other ) = delete;
+  UniquePtr& operator= (const UniquePtr& other ) = delete;
+
+
+  //Move Constructor   release()- returns a pointer to the managed object and releases the ownership
+   
+   UniquePtr(UniquePtr&& right) : _ptr(right.release())
+   {
+
+   }
+   
+   template<class U>
+  UniquePtr(UniquePtr<U>&& right) : _ptr(right.release())
+   {
+
+   }
+
+
+// Move AssignMent operator 
+ 
+ UniquePtr& operator= (UniquePtr&& right)
+ {
+    reset(right.release());
+    return *this;
+ }
+ 
+ 
+   template<class U>
+  UniquePtr& operator= (UniquePtr<U>&& right)
+ {
+    reset(right.release());
+    return *this;
+ }
 
 
 
-    public:
-      
-      uniqueptr (T* a = nullptr): res(a){
-           cout<< "ctor";
-
-      }
-
-      uniqueptr(const uniqueptr<T>& ptr) = delete ;    // copy constructor 
-      uniqueptr& operator= (const uniqueptr<T>& ptr) = delete ; // Copy assignment operator 
-      
-        uniqueptr(const uniqueptr<T>&& ptr)  { // Move Copy constructor 
-            res = ptr.res;
-            ptr.res = nullptr;
-        }
+   ~UniquePtr()
+   {
+       cout<<"destructor is called"<<endl;
+    reset();
+   }
 
 
-       uniqueptr& operator= ( uniqueptr<T>&& ptr)  { // Move Assigment operator
+  T* release()
+  {
+    auto oldPtr = _ptr;
+    _ptr = nullptr;
+    return oldPtr;
+  }
 
-            if(this ! = &ptr)
-            {
-                if(res){
-                    delete res;
-                }
 
-            res = ptr.res;
-            ptr.res = nullptr;
-            }
-              return *this;
-        }
-     
-
-    T* operator->()
-     {
-        return res;
-     }
-
-    
-    T& operator*()
+  void reset(T*newPtr = nullptr)
+  {
+    auto oldPtr = release();
+    _ptr = newPtr;
+    if(oldPtr !=nullptr)
     {
-        return *res;
+        delete oldPtr;
     }
+  }
 
-          T* get()
-        {
-            return res;
-        }
 
-        void reset(T* newres = nullptr)
-        {
-            if(res){
-                delete res;
-            }
-            res = newres;
+    // Swap two unique_ptr objects
+   void swap(UniquePtr& other)
+   {
+    std::swap(this->_ptr , other._ptr);
+   }
+   
 
-        }
+  T* get() const {return _ptr;}
 
-     ~uniqueptr(){
-        cout<<"dtor\n";
-        if(res)
-        {
-            delete res;
-            res = nullptr;
-        }
-     } 
-       
+  /*This is the arrow operator that returns the raw pointer managed by the unique_ptr. It's used to access members of the managed object as if it were a regular pointer.*/
+   /*unique_ptr<MyClass> ptr(new MyClass());
+ptr->myMethod(); // Access a member of the managed object
+*/
+  T* operator->() const { return get();}
+
+
+  
+    // Dereference operators
+
+    /*
+    unique_ptr<int> ptr(new int(42));
+     int value = *ptr; */
+  T& operator* () const {return *get();}
+
+ 
+ 
+  explicit operator bool()
+  {
+    return get()!= nullptr;
+  }
+
+
+
   };
-
+  
+  class ResourceBase{
+      public:
+      ResourceBase()
+      {
+          cout<<"In ResouceBase::Constructor"<<endl;
+      }
+      
+      virtual ~ResourceBase(){
+          cout<<"In ResourceBase::Destructor"<<endl;
+      }
+      
+      
+      virtual void print()
+      {
+          cout<<"Base print called"<<endl;    
+          }
+  };
+  
+  
+  class Resource : public ResourceBase
+  {
+      public:
+      Resource() : ResourceBase()
+      {
+          cout<<"In Resource::Constructor "<<endl;
+      }
+      
+      virtual ~Resource()
+      {
+          cout<<"In Resource::Destructor"<<endl;
+      }
+      
+      virtual void print()
+      {
+          cout<<"Derived Print Called"<<endl;
+      }
+  };
+  class A{
+      
+      inline static int object {};
+      
+      int myNum{};
+      
+      public:
+      A()
+      {
+          myNum =++object;
+          cout<<"constructing object Number "<<myNum << endl;
+      }
+      
+      
+      ~A()
+      {
+          cout<< "Destructing object Number "<<myNum <<endl;
+      }
+      
+  };
+  
+  
   int main()
   {
-         uniqueptr<int> ptr1(new int(2));
-         //uniqueptr<int> ptr2(ptr1);  // Compilation error
-        // uniqueptr<int> ptr3 = ptr1; // Compilation error
-         uniqueptr<int> ptr4(new int(500));
-         //ptr4=ptr3;  // Compilation error
-         uniqueptr<int> ptr3 = std::move(ptr1);
-         //ptr4 = std::move(ptr1);
-
-
-        // ptr1->func();
-         cout<< *(ptr1);
-         ptr1.get();
-         ptr1.reset(new int(30));
-
-
+      /*
+      auto a1 = new A;
+      UniquePtr<A> uptr{a1};
+      
+       auto a2 = new A;
+      uptr.reset(a2);
+      cout<<"Exiting MAin"<<endl;
+      */
+      /*
+      UniquePtr<ResourceBase> uptr{new Resource};
+      cout<<"Exiting Main"<<endl;
+      */
+      
+        UniquePtr<int> ptr1(new int(2));
   }
