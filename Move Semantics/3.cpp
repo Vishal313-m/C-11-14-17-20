@@ -17,6 +17,11 @@ So by the time the temporary object dies, the data is going to be ours and we wi
 like this and we will have avoided unnecessary copies in our C plus plus program.
 
 
+Move semantics in C++ refers to the ability to efficiently transfer resources from one object to another
+ without creating unnecessary copies. In C++, move semantics are implemented through move constructors and move assignment operators,
+  allowing the transfer of resources like dynamically allocated memory or unique ownership pointers. When an object is moved,
+  its resources are "transferred" to another object, leaving the original object in a valid but unspecified state.
+  This mechanism is particularly useful for optimizing performance by avoiding unnecessary deep copies of objects.
 
 
 Move semantics in C++ refer to a set of rules and tools that enable the efficient transfer of resources from one object to another, 
