@@ -46,3 +46,6 @@ int main(){
    
     return 0;
 }
+
+
+//SWtich case
