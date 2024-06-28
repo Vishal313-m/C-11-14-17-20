@@ -24,6 +24,80 @@ Use Cases
 - Nested data access: References can be used to easily access nested data structures
 
 
+
+/*
+
+
+#include<iostream>
+using namespace std;
+
+
+int main()
+{
+    int a = 4;
+    int b = 5;
+    cout<<&a<<endl;
+    cout<<&b<<endl;
+    
+    int &ref = a;
+    
+    cout<<&ref<<endl;
+    
+    ref = b;
+    
+    cout<<"---------------------------"<<endl;
+     cout<<&ref<<endl;
+    
+     cout<<"---------------------------"<<endl;
+     cout<<ref<<endl;
+    
+     cout<<"---------------------------"<<endl;
+     cout<<a<<endl;
+     
+    
+    
+}
+
+
+OUTPUT
+
+0x7fff0fb365d8
+0x7fff0fb365dc
+0x7fff0fb365d8
+---------------------------
+0x7fff0fb365d8
+---------------------------
+5
+---------------------------
+5
+
+*/
+
+
+
+
+
+/*
+#include <iostream>
+
+int main() {
+    int x = 10;
+    int y = 20;
+
+    // Declare a reference to x
+    int& ref_x = x;
+
+    // Attempt to change the reference to refer to y
+    ref_x = y; // This does not change the reference, it just assigns the value of y to x
+
+    std::cout << "x = " << x << std::endl; // Output: x = 20
+    std::cout << "y = " << y << std::endl; // Output: y = 20
+    std::cout << "ref_x = " << ref_x << std::endl; // Output: ref_x = 20
+
+    return 0;
+}
+
+*/
 int a = 5;
 int &b = a;
 

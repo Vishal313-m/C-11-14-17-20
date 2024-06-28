@@ -46,6 +46,45 @@ public :
      void set_age(unsigned int age);
      */
 
+ /*
+    So here we have a simple example which is going to show how you could come up with a dangling reference.
+We have a simple function which is a member of our class dog here.
+The name of the function is compiled dog info and it's going to return a const Stdstring reference.
+Okay, so this is a safe function.
+It's not going to be modifying the object, it's just going to be reading data from the object and look at what we do in the body.
+Here we are setting up a string local object and we are basically putting this together.
+We have the dog name and we have the dog breed and we have the dog age in here.
+And we're going to store all of this information in this string object.
+But look at what we do here.
+We are going to return this.
+And the moment this function returns, the local object, which is this string here, which is called
+info, is going to be wiped out from memory because it is a local stack object and the reference we
+return here might stay there long after this function is done executing.
+So if we try to use this reference somewhere later, after we call this function, we will be setting
+ourselves up for disaster because this is a dangling reference.
+It is no longer referencing valid data because what it was referencing is long dead.
+It was wiped out after the function here finished executing.
+And this is a bad reference.
+You shouldn't be using it.
+If you use it, you're going to be having problems.
+This is what I want you to see here.
+But we can also have the same problems with pointers.
+Suppose we have a function here which is going to return an INT pointer and it is a cast member function.
+It's not going to be modifying our object in any way.
+And this is a member class because we see that it is part of the dog class here.
+So what we do in the body, we are setting up a local variable and we are returning it.
+So we are returning the address of this variable.
+And when this function finishes, executing this pointer might be alive.
+And if we try to use it, we're going to basically be dereferencing something that is already dead.
+It's no longer going to be there and something else might be living at this memory address already.
+Hopefully you can see that if we try to use this pointer somewhere after this function is done, we're
+going to be setting ourselves up for disaster because we will be using memory that doesn't belong to us anymore.
+So this is really what I want you to see, that dangling pointers and dangling references.
+Are really bad and you should watch out for this.
+Thanks to come up in your program whether you are using classes or not.
+   */
+
+  
      //Utility functions
      void print_info() const;
      const std::string& compile_dog_info() const{
@@ -120,7 +159,7 @@ int main(){
     Dog dog1("Fluffy","Shepherd",2);
 
     /*
-    const std::string& str_ref = dog1.compile_dog_info();
+    const std::string& str_ref = dog1.compile_dog_info(); This is a reference that already dead
     std::cout << " info : " << str_ref << std::endl;
     */
 

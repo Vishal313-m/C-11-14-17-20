@@ -88,6 +88,7 @@ void function_taking_dog(Dog dog){
 //Parameter by reference
 void function_taking_dog_ref(Dog& dog_ref){
 	//Compiler won't allow passing const object as argument
+    // Because this reference used to modify the orginal object
 }
 
 //Parameter by const reference
@@ -114,15 +115,15 @@ int main(){
     std::cout << "address of object : " << &dog1 << std::endl;
 
     //Function taking parameter by value : WORKS
-    //function_taking_dog(dog1);
+    function_taking_dog(dog1);
 
     //function_taking_dog_ref(dog1); // Compiler error
 
-    //function_taking_const_dog_ref(dog1);
+    function_taking_const_dog_ref(dog1);
 
-    //function_taking_dog_p(&dog1);
+    //function_taking_dog_p(&dog1); // Dog by pointer:: compiler error : could modify dog1 through pointer to non const
 
-    //function_taking_pointer_to_const_dog(&dog1);
+    function_taking_pointer_to_const_dog(&dog1);
 
 
     return 0;

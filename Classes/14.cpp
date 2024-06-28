@@ -14,7 +14,7 @@ public :
      std::string& name(){
         return m_name;
      }
-     const std::string& name() const{
+     const std::string& name() const{  // It is used by const object 
         return m_name;
      }
 
@@ -114,7 +114,7 @@ int main(){
    std::cout << "dog name : " << dog1.name() << std::endl; // Getter
 
    //Modify the object
-   //dog1.name() = "Milou"; // Setter
+   //dog1.name() = "Milou"; // Setter  It is used for non const object
    dog1.print_info();
 
 

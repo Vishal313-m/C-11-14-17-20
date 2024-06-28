@@ -84,30 +84,30 @@ int main(){
 
     const Dog dog1("Fluffy","Shepherd",2);
 
-    //Direct access
-    
-    dog1.print_info(); // Compiler error
 
-    dog1.set_name("Milou"); // Compiler error
 
-    dog1.print_info();
+    dog1.set_name("Milou"); // Setting values on const object won't work - Compiler error
+
+    dog1.print_info();   // Reading won't work either : Compiler error   // make methodds const 
+
+    std::string name = dog1.get_name();   // compiler error 
     
 
    //Pointer to non const
-     Dog * dog_ptr = &dog1;
+     Dog * dog_ptr = &dog1; 
 
    //Non const reference
-     Dog& dog_ref = dog1;
+     Dog& dog_ref = dog1; // Error : can't convert from const Dog& to Dog&
 
    //Pointer to const
    const Dog* const_dog_ptr = &dog1;
-    const_dog_ptr->set_name("Milou"); // Expect
-   const_dog_ptr->get_name();
+    const_dog_ptr->set_name("Milou"); // Error - Expect
+   const_dog_ptr->get_name(); // Error - not Expected 
 
    //Const reference
    const Dog& const_dog_ref = dog1;
    const_dog_ref.set_name("Milou"); // Expected
-   const_dog_ref.get_name();
+   const_dog_ref.get_name(); // Error - not expected 
 
     return 0;
 }
